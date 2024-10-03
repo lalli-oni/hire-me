@@ -1,3 +1,5 @@
+// EXPLANATION (LTJ): Used https://app.quicktype.io/ and pasted response to generate DTO type
+// 	Only used first child, so of course unable to infer all types. Marked each one with // TODO
 export interface Child {
 	childId:             string;
 	institutionId:       string;
