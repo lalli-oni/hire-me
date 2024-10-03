@@ -40,6 +40,8 @@ function App() {
 
   return (
     <>
+      {error?.length ? <div>{error}</div> : null}
+      {data.map((child) => <div>{child.name.fullName}</div>)}
     </>
   )
 }
