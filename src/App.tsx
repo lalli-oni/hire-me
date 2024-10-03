@@ -4,6 +4,8 @@ import './App.css'
 
 import { type Child } from './models/child'
 
+import { delay } from './utils/delay';
+
 import ChildTable from "./components/ChildTable"
 
 // TODO (LTJ): Find a fitting home for this interface
@@ -37,7 +39,7 @@ function App() {
 
   useEffect(() => {
     getChildren(import.meta.env.VITE_ACCESS_TOKEN)
-      .then((response) => setData(response?.children))
+      .then((response) => delay(2000).then(() => setData(response?.children)))
       .catch(() => setError(`Error fetching list of children.`))
       .finally(() => setIsLoading(false))
   }, [])
