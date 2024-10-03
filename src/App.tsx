@@ -65,7 +65,7 @@ function App() {
         <div>Loading</div> :
         <div>
           {error?.length ? <div>{error}</div> : null}
-          <ChildTable children={data}/>
+          <ChildTable children={data} onCheck={updateChildLocation} />
         </div>}
     </>
   )
