@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import './App.css'
 
 import { type Child } from './models/child'
@@ -26,6 +28,15 @@ const getChildren = async (accessToken: string): Promise<Response> => {
 }
 
 function App() {
+  // TODO (LTJ): Should we bring in a data access library? Determine the need
+  const [data, setData] = useState<Array<Child>>([])
+  const [error, setError] = useState<null | string>(null)
+
+  useEffect(() => {
+    getChildren(import.meta.env.VITE_ACCESS_TOKEN)
+      .then((response) => setData(response?.children))
+      .catch((e) => setError(`Error fetching list of children.`))
+  }, [])
 
   return (
     <>
