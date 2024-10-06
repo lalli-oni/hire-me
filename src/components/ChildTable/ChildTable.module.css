@@ -2,3 +2,9 @@ table {
     border: 1px solid gray;
     padding: 1rem 0px;
 }
+
+tfoot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
