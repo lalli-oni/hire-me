@@ -1,8 +1,13 @@
 import { type Child } from '../../models/child';
 import './ChildTable.module.css';
 
+interface IndexedChild extends Child {
+  index: number;
+}
+
 export interface ChildTableProps {
-  children: Array<Child>;
+  children: Array<IndexedChild>;
+  pageSize: number;
   onCheck: (childId: string, direction: 'in' | 'out') => void;
 }
 

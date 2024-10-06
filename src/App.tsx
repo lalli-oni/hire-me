@@ -28,7 +28,7 @@ function App() {
         <div>Loading..</div> :
         <main>
           {error?.length ? <em className="error-message">{error}</em> : null}
-          <ChildTable children={data} onCheck={updateChildLocation} />
+          <ChildTable children={data.map((child, i) => ({ ...child, index: i}))} onCheck={updateChildLocation} pageSize={5} />
         </main>}
     </>
   )
