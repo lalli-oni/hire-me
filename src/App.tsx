@@ -56,17 +56,18 @@ function App() {
         pickupTime: direction === 'in' ? formattedTime : undefined
       })
     })
+
     if (!response.ok) setError(`Error checking ${direction} child`)
   }
 
   return (
     <>
       {isLoading ?
-        <div>Loading</div> :
-        <div>
-          {error?.length ? <div>{error}</div> : null}
+        <div>Loading..</div> :
+        <main>
+          {error?.length ? <em className="error-message">{error}</em> : null}
           <ChildTable children={data} onCheck={updateChildLocation} />
-        </div>}
+        </main>}
     </>
   )
 }
