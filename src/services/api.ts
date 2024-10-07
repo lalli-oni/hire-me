@@ -22,16 +22,19 @@ export const getChildren = async (): Promise<ChildListResponse> => {
 }
 
 export const updateChildLocation = async (childId: string, direction: 'in' | 'out') => {
-	const currentTime = new Date()
-	const formattedTime = `${currentTime.getHours()}:${currentTime.getMinutes()}`
-	// TODO (LTJ): Encode URI components using native API
-	const response = await fetch(`${API_HOST}v2/children/${childId}/${direction === 'in' ? 'checkins' : 'checkout'}`, {
-		method: 'POST',
-		body: JSON.stringify({
-			accessToken: import.meta.env.VITE_ACCESS_TOKEN,
-			pickupTime: direction === 'in' ? formattedTime : undefined
-		})
-	})
+  const currentTime = new Date()
+  const formattedTime = `${currentTime.getHours()}:${currentTime.getMinutes()}`
+  // TODO (LTJ): Encode URI components using native API
+  const response = await fetch(`${API_HOST}v2/children/${childId}/${direction === 'in' ? 'checkins' : 'checkout'}`, {
+    method: 'POST',
+    body: JSON.stringify({
+      accessToken: import.meta.env.VITE_ACCESS_TOKEN,
+      pickupTime: direction === 'in' ? formattedTime : undefined
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 
-	return response.ok
+  return response.ok
 }
