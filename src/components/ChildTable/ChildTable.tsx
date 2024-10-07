@@ -50,30 +50,34 @@ function ChildTable(props: ChildTableProps) {
           </tr>
         )}
       </tbody>
+      {/* IMPROVEMENT (LTJ): Having controls in a footer of a table is annoying as the footer jumps up */}
       <tfoot>
-        <div>
-          <input
-            type="button"
-            onClick={() => {
-              const temp = startIndex - 5
-              if (temp < 0) { setStartIndex(0) } else { setStartIndex(temp) }
-            }}
-            disabled={startIndex < 1}
-            value="Prev"
-          />
-          <input
-            type="button"
-            onClick={() => {
-              const temp = startIndex + 5
-              if (temp > children.length) { setStartIndex(children.length - pageSize) } else { setStartIndex((startIndex + 5)) }
-            }}
-            disabled={(startIndex + pageSize) > children.length}
-            value="Next"
-          />
-        </div>
-        <div>
-          <span>{startIndex + 1} / {dataView[dataView.length - 1].index + 1}</span>
-        </div>
+        <tr>
+          <td>
+            <input
+              type="button"
+              onClick={() => {
+                const newIndex = startIndex - 5
+                if (newIndex < 0) { setStartIndex(0) } else { setStartIndex(newIndex) }
+              }}
+              disabled={startIndex < 1}
+              value="Prev"
+            />
+            <input
+              type="button"
+              onClick={() => {
+                const newIndex = startIndex + 5
+                if (newIndex > children.length) { setStartIndex(children.length - pageSize) } else { setStartIndex((newIndex)) }
+              }}
+              disabled={(startIndex + pageSize) > children.length}
+              value="Next"
+            />
+          </td>
+          <td colSpan={2}>
+            {/* Shows the current page start/end indexes */}
+            <span>{startIndex + 1} / {dataView[dataView.length - 1].index + 1}</span>
+          </td>
+        </tr>
       </tfoot>
     </table>
   )
