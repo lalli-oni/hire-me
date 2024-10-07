@@ -23,8 +23,9 @@ function ChildTable(props: ChildTableProps) {
   }, [children])
 
   useEffect(() => {
-    setDataView(children.slice(startIndex, startIndex + 5))
-  }, [startIndex, children])
+    // Create a virtualised paginated view
+    setDataView(children.slice(startIndex, startIndex + pageSize))
+  }, [startIndex, children, pageSize])
 
   return (
     <table>
